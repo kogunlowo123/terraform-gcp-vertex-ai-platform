@@ -2,6 +2,53 @@
 
 Terraform module for deploying a complete Vertex AI MLOps infrastructure on Google Cloud Platform.
 
+## Architecture
+
+```mermaid
+flowchart TB
+    subgraph FeatureStore["Feature Store"]
+        style FeatureStore fill:#0078D4,color:#fff
+        EntityTypes["Entity Types"]
+        Features["Features"]
+        OnlineServing["Online Serving"]
+        EntityTypes --> Features
+    end
+
+    subgraph Models["Model Registry & Artifacts"]
+        style Models fill:#3F8624,color:#fff
+        ArtifactRegistry["Artifact Registry"]
+        ModelRegistry["Model Registry"]
+        Pipelines["ML Pipelines"]
+    end
+
+    subgraph Serving["Endpoints"]
+        style Serving fill:#FF9900,color:#fff
+        PredictionEndpoint["Prediction Endpoint"]
+        PSC["Private Service Connect"]
+    end
+
+    subgraph Development["Workbench & Experiments"]
+        style Development fill:#8C4FFF,color:#fff
+        Workbench["Workbench Notebooks"]
+        Tensorboard["Tensorboard"]
+        GPU["GPU Accelerators"]
+    end
+
+    subgraph IAM["IAM & Networking"]
+        style IAM fill:#DD344C,color:#fff
+        ServiceAccount["Service Account"]
+        Roles["Least-Privilege Roles"]
+        VPC["VPC / Subnet"]
+    end
+
+    FeatureStore --> Serving
+    Models --> Serving
+    Development --> Models
+    Serving --> IAM
+    PredictionEndpoint --> PSC
+    ServiceAccount --> Roles
+```
+
 ## Features
 
 - **Feature Store** -- Managed feature store with configurable entity types and features for online/offline serving.
