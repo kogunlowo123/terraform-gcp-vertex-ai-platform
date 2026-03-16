@@ -9,20 +9,16 @@ variable "region" {
 }
 
 variable "network" {
-  description = "The VPC network self-link for private connectivity."
+  description = "The VPC network name for private connectivity."
   type        = string
   default     = null
 }
 
 variable "subnetwork" {
-  description = "The subnetwork self-link for private connectivity."
+  description = "The subnetwork name for private connectivity."
   type        = string
   default     = null
 }
-
-# -----------------------------------------------------------------------------
-# Feature Store
-# -----------------------------------------------------------------------------
 
 variable "enable_feature_store" {
   description = "Whether to create the Vertex AI Feature Store."
@@ -60,10 +56,6 @@ variable "feature_store_entity_types" {
   default = []
 }
 
-# -----------------------------------------------------------------------------
-# Endpoints
-# -----------------------------------------------------------------------------
-
 variable "enable_endpoints" {
   description = "Whether to create Vertex AI Endpoints."
   type        = bool
@@ -81,10 +73,6 @@ variable "endpoints" {
   }))
   default = {}
 }
-
-# -----------------------------------------------------------------------------
-# Workbench
-# -----------------------------------------------------------------------------
 
 variable "enable_workbench" {
   description = "Whether to create Workbench instances."
@@ -104,10 +92,6 @@ variable "workbench_instances" {
   default = []
 }
 
-# -----------------------------------------------------------------------------
-# Tensorboard
-# -----------------------------------------------------------------------------
-
 variable "enable_tensorboard" {
   description = "Whether to create a Vertex AI Tensorboard instance."
   type        = bool
@@ -120,19 +104,11 @@ variable "tensorboard_name" {
   default     = "default-tensorboard"
 }
 
-# -----------------------------------------------------------------------------
-# Service Account & IAM
-# -----------------------------------------------------------------------------
-
 variable "service_account_id" {
-  description = "The service account ID (name) for Vertex AI workloads."
+  description = "The service account ID for Vertex AI workloads."
   type        = string
   default     = "vertex-ai-sa"
 }
-
-# -----------------------------------------------------------------------------
-# Private Service Connect
-# -----------------------------------------------------------------------------
 
 variable "enable_private_service_connect" {
   description = "Whether to enable Private Service Connect for endpoints."
@@ -140,12 +116,8 @@ variable "enable_private_service_connect" {
   default     = true
 }
 
-# -----------------------------------------------------------------------------
-# Labels
-# -----------------------------------------------------------------------------
-
 variable "labels" {
-  description = "A map of labels to apply to all resources that support labels."
+  description = "A map of labels to apply to all resources."
   type        = map(string)
   default     = {}
 }

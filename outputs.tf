@@ -1,7 +1,3 @@
-# =============================================================================
-# Service Account
-# =============================================================================
-
 output "service_account_email" {
   description = "The email address of the Vertex AI service account."
   value       = google_service_account.vertex_ai.email
@@ -12,10 +8,6 @@ output "service_account_id" {
   value       = google_service_account.vertex_ai.id
 }
 
-# =============================================================================
-# Artifact Registry
-# =============================================================================
-
 output "artifact_registry_repository_id" {
   description = "The ID of the Artifact Registry repository for model artifacts."
   value       = google_artifact_registry_repository.model_artifacts.id
@@ -25,10 +17,6 @@ output "artifact_registry_repository_url" {
   description = "The URL of the Artifact Registry repository."
   value       = "${var.region}-docker.pkg.dev/${var.project_id}/${google_artifact_registry_repository.model_artifacts.repository_id}"
 }
-
-# =============================================================================
-# Feature Store
-# =============================================================================
 
 output "feature_store_id" {
   description = "The ID of the Vertex AI Feature Store."
@@ -47,10 +35,6 @@ output "feature_store_entity_type_ids" {
   }
 }
 
-# =============================================================================
-# Endpoints
-# =============================================================================
-
 output "endpoint_ids" {
   description = "Map of endpoint keys to their IDs."
   value = {
@@ -65,10 +49,6 @@ output "endpoint_names" {
   }
 }
 
-# =============================================================================
-# Workbench
-# =============================================================================
-
 output "workbench_instance_ids" {
   description = "Map of Workbench instance names to their IDs."
   value = {
@@ -82,10 +62,6 @@ output "workbench_instance_proxy_uris" {
     for name, wb in google_workbench_instance.instances : name => wb.proxy_uri
   }
 }
-
-# =============================================================================
-# Tensorboard
-# =============================================================================
 
 output "tensorboard_id" {
   description = "The ID of the Vertex AI Tensorboard instance."
